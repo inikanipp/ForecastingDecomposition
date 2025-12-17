@@ -368,6 +368,18 @@ with row4:
             column_names = df.columns.to_list()
             df_a = df.iloc[0]
             if df is not None:
+                last_tahun = df.iloc[-1]["Tahun"]
+                last_periode = df.iloc[-1]["Periode"]
+
+                list_periode = list(df['Periode'].unique())
+
+                if last_periode == list_periode[-1] :
+                    last_periode = list_periode[0]
+                    last_tahun +=1
+                else :
+                    index_periode = list_periode.index(last_periode)
+                    index_periode += 1
+                    last_periode = list_periode[index_periode]
                 st.markdown(f"""
                         <div class="date-selector-container-header">
                         <span class="date-item month">{column_names[0]}</span>
@@ -385,8 +397,8 @@ with row4:
                 
                 st.markdown(f"""
                         <div class="date-selector-container">
-                            <span class="date-item month">{df_a['Tahun']}</span>
-                            <span class="date-item month">{df_a['Periode']}</span>
+                            <span class="date-item month">{last_tahun}</span>
+                            <span class="date-item month">{last_periode}</span>
                             <span class="date-item month">{MA_F:.0f}</span>
                             <span class="date-item month">{CMA_F:.0f}</span>
                             <span class="date-item month">{X_F:.0f}</span>
@@ -537,10 +549,24 @@ with row6:
                         </div>
                     """, unsafe_allow_html=True)
                 
+                last_tahun = df.iloc[-1]["Tahun"]
+                last_periode = df.iloc[-1]["Periode"]
+
+                list_periode = list(df['Periode'].unique())
+
+                if last_periode == list_periode[-1] :
+                    last_periode = list_periode[0]
+                    last_tahun +=1
+                else :
+                    index_periode = list_periode.index(last_periode)
+                    index_periode += 1
+                    last_periode = list_periode[index_periode]
+
+
                 st.markdown(f"""
                         <div class="date-selector-container">
-                            <span class="date-item month">{df_m['Tahun']}</span>
-                            <span class="date-item month">{df_m['Periode']}</span>
+                            <span class="date-item month">{last_tahun}</span>
+                            <span class="date-item month">{last_periode}</span>
                             <span class="date-item month">{MA_F:.0f}</span>
                             <span class="date-item month">{CMA_F:.0f}</span>
                             <span class="date-item month">{X_F:.0f}</span>
