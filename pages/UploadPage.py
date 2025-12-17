@@ -47,10 +47,14 @@ with row1:
                 </div>
             """, unsafe_allow_html=True)
             uploaded_files = st.file_uploader(
-                "", accept_multiple_files=False, type="csv"
+                "", accept_multiple_files=False, type=["csv", "xlsx"]
             )
             if uploaded_files is not None and st.session_state.df is None:
-                df = pd.read_csv(uploaded_files)
+                if uploaded_files.name.endswith(".csv"):
+                    df = pd.read_csv(uploaded_files)
+
+                elif uploaded_files.name.endswith(".xlsx"):
+                    df = pd.read_excel(uploaded_files)
 
                 cols = df.columns.to_list()
                 df.rename(columns={
