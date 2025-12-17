@@ -12,6 +12,11 @@ from altair_saver import save
 from io import BytesIO
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score
 
+
+if "df" not in st.session_state or st.session_state.df is None:
+    st.warning("Silakan upload data di Halaman Upload Data")
+    st.stop()
+
 st.title("DECOMPOSITION FORECASTING")
 # st.write("Aplikasi Streamlit pertamaku 🚀")
 
@@ -24,10 +29,6 @@ st.markdown("""
 import streamlit as st
 with open("style.css") as f:
     css = f"<style>{f.read()}</style>"
-
-with st.sidebar:
-    st.write("apalah")
-
 
 # layout
 
@@ -56,7 +57,8 @@ with row1:
                 Seasonal
                 </div>
             """, unsafe_allow_html=True)
-            df = pd.read_excel('hasil.xlsx')
+            # df = pd.read_excel('hasil.xlsx')
+            df = st.session_state.df
             trend = st.slider(label="",min_value=4, max_value=12)
             # =======================================================
             periode = df.columns.to_list()
@@ -67,7 +69,7 @@ with row1:
 
             df['Aktual'] = pd.to_numeric(df['Aktual'], errors='coerce')
             df['MA'] = df['Aktual'].rolling(window=trend).mean().shift(1)
-
+            # df.drop(columns=['periode'], inplace=True)
             df['CMA'] = (df['MA'] + df['MA'].shift(1)) / 2
 
             df['x'] = range(len(df))
@@ -194,7 +196,6 @@ with row2:
                         <span class="date-item month">{column_names[0]}</span>
                         <span class="date-item month">{column_names[1]}</span>
                         <span class="date-item month">{column_names[2]}</span>
-                        <span class="date-item month">{column_names[3]}</span>
                         <span class="date-item month">{column_names[4]}</span>
                         <span class="date-item month">{column_names[5]}</span>
                         <span class="date-item month">{column_names[6]}</span>
@@ -203,6 +204,7 @@ with row2:
                         <span class="date-item month">{column_names[9]}</span>
                         <span class="date-item month">{column_names[10]}</span>
                         <span class="date-item month">{column_names[11]}</span>
+                        <span class="date-item month">{column_names[12]}</span>
                         </div>
                     """, unsafe_allow_html=True)
                 for _, row in df.iterrows():
@@ -370,7 +372,6 @@ with row4:
                         <div class="date-selector-container-header">
                         <span class="date-item month">{column_names[0]}</span>
                         <span class="date-item month">{column_names[1]}</span>
-                        <span class="date-item month">{column_names[3]}</span>
                         <span class="date-item month">{column_names[4]}</span>
                         <span class="date-item month">{column_names[5]}</span>
                         <span class="date-item month">{column_names[6]}</span>
@@ -378,6 +379,7 @@ with row4:
                         <span class="date-item month">{column_names[9]}</span>
                         <span class="date-item month">{column_names[10]}</span>
                         <span class="date-item month">{column_names[11]}</span>
+                        <span class="date-item month">{column_names[12]}</span>
                         </div>
                     """, unsafe_allow_html=True)
                 
@@ -524,7 +526,6 @@ with row6:
                         <div class="date-selector-container-header">
                         <span class="date-item month">{column_names[0]}</span>
                         <span class="date-item month">{column_names[1]}</span>
-                        <span class="date-item month">{column_names[3]}</span>
                         <span class="date-item month">{column_names[4]}</span>
                         <span class="date-item month">{column_names[5]}</span>
                         <span class="date-item month">{column_names[6]}</span>
@@ -532,6 +533,7 @@ with row6:
                         <span class="date-item month">{column_names[9]}</span>
                         <span class="date-item month">{column_names[10]}</span>
                         <span class="date-item month">{column_names[11]}</span>
+                        <span class="date-item month">{column_names[12]}</span>
                         </div>
                     """, unsafe_allow_html=True)
                 
@@ -586,14 +588,14 @@ with row7:
             # ================= PILIH DATA & METRIK =================
             if metode == "Additive":
                 df_export = df.copy()
-                df_export = df_export.drop(columns=["FORECAST_M"], errors="ignore")
+                df_export = df_export.drop(columns=["FORECAST_M", 'periode'], errors="ignore")
 
                 mse_export = mse
                 mape_export = mape
 
             else:  # Multiplicative
                 df_export = df.copy()
-                df_export = df_export.drop(columns=["FORECAST"], errors="ignore")
+                df_export = df_export.drop(columns=["FORECAST",'periode'], errors="ignore")
 
                 mse_export = mse_M
                 mape_export = mape_M
