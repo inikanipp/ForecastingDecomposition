@@ -92,6 +92,15 @@ with row2:
                 Chart Plot
                 </div>
             """, unsafe_allow_html=True)
+            fig = px.line(
+                df,
+                x="Tanggal",
+                y=["Nilai", "FORECAST"],
+                labels={"value": "Nilai", "variable": "Jenis"},
+                title="Line Chart Nilai vs Forecast"
+            )
+
+            st.plotly_chart(fig, use_container_width=True)
 
     # ========================= kolom 2 baris 2 =========================
     with col5 :
@@ -103,7 +112,7 @@ with row2:
                 Preview
                 </div>
             """, unsafe_allow_html=True)
-
+    
            
             if uploaded_files is not None :
                 column_names = df.columns.to_list()

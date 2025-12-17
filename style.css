@@ -52,6 +52,11 @@ div[data-testid="stVerticalBlock"] {
     background-color: transparent !important;
 }
 
+/* div[data-testid="stVerticalBlockBorderWrapper"]{
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+} */
+
 .header-title{
   padding: 8px 10px;
   border: none; 
@@ -90,7 +95,7 @@ div[data-testid="stVerticalBlock"] {
 
 .data-number {
   /* Gaya untuk Angka "60" */
-  font-size: 72px; /* Ukuran font yang sangat besar */
+  font-size: 32px; /* Ukuran font yang sangat besar */
   font-weight: 900; /* Ekstra tebal */
   line-height: 1; /* Agar angka tidak memakan terlalu banyak ruang vertikal */
   margin-right: 15px; /* Jarak antara angka dan label */
@@ -99,6 +104,26 @@ div[data-testid="stVerticalBlock"] {
 .data-label {
   /* Gaya untuk Teks "Amount of Data" */
   font-size: 1rem;
+  font-weight: 700; /* Tebal */
+  line-height: 1.2; /* Spasi baris */
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.data-label1 {
+  /* Gaya untuk Teks "Amount of Data" */
+  font-size: 1.6rem;
+  font-weight: 700; /* Tebal */
+  line-height: 1.2; /* Spasi baris */
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.data-label2 {
+  /* Gaya untuk Teks "Amount of Data" */
+  font-size: 1.2rem;
   font-weight: 700; /* Tebal */
   line-height: 1.2; /* Spasi baris */
   font-family: "Poppins", sans-serif;
@@ -212,4 +237,54 @@ div[data-testid="stVerticalBlock"] {
   box-shadow: 0 4px 10px rgba(255, 99, 99, 0.4); 
 }
 
+div[data-testid="stMarkdownContainer"]{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+
+.date-selector-container,
+.date-selector-container-header {
+  margin-top: 10px;
+  display: grid;
+
+  /* 12 kolom = sesuai jumlah kolom kamu */
+  grid-template-columns:
+  minmax(60px, 0.7fr)   /* Tahun */
+  minmax(90px, 1.2fr)   /* Bulan */
+  minmax(80px, 1fr)     /* Nilai */
+  minmax(70px, 1fr)     /* MA */
+  minmax(70px, 1fr)     /* CMA */
+  minmax(40px, 0.6fr)   /* x */
+  minmax(50px, 0.7fr)   /* x2 */
+  minmax(80px, 1fr)     /* xy */
+  minmax(80px, 1fr)     /* CMAT */
+  minmax(50px, 0.7fr)   /* CF */
+  minmax(50px, 0.7fr)   /* SI */
+  minmax(90px, 1.2fr);  /* FORECAST */
+
+
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.date-selector-container-header {
+  background-color: #C2A5F9;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+
+.date-selector-container {
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
 
