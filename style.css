@@ -3,6 +3,24 @@
 } */
 
 
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1f2937;
+  --card-color: #f1f5f9;
+  --primary: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --card-color: #1e293b;
+    --primary: #38bdf8;
+  }
+}
+
+
+
 
 div[class*="st-emotion-cache"][class*="3uj0"] p {
     color: green !important;
