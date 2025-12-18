@@ -148,17 +148,17 @@ with row2:
                 column_names = st.session_state.df.columns.to_list()
                 st.markdown(f"""
                         <div class="date-selector-container-headerApp">
-                        <span class="date-item year">{column_names[0]}</span>
+                        <span class="date-item month">{column_names[0]}</span>
                         <span class="date-item month">{column_names[1]}</span>
-                        <span class="date-item year">{column_names[2]}</span>
+                        <span class="date-item month">{column_names[2]}</span>
                         </div>
                     """, unsafe_allow_html=True)
                 for _,row in st.session_state.df.iterrows() :
                     st.markdown(f"""
                         <div class="date-selector-containerApp">
-                        <span class="date-item year">{row['Tahun']}</span>
+                        <span class="date-item month">{row['Tahun']}</span>
                         <span class="date-item month">{row['Periode']}</span>
-                        <span class="date-item year">{row['Aktual']}</span>
+                        <span class="date-item month">{row['Aktual']}</span>
                         </div>
                     """, unsafe_allow_html=True)
 
