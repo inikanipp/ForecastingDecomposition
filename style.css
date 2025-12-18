@@ -220,9 +220,11 @@ div[data-testid="stVerticalBlock"] {
   color: #000000;
 }
 
-p {
-  color : black
+div[data-testid="stMarkdownContainer"] {
+  color : black !important
 }
+
+
 
 /* 1. Wrapper Luar (Latar Belakang Gelap) */
 .background-wrapper {
